@@ -54,6 +54,12 @@
       "internal": false
     },
     {
+      "name": "dsh-mesh-scheduler",
+      "guestDirectory": "/root/dsha-mesh-scheduler",
+      "entrypoint": "lib/index.js",
+      "internal": false
+    },
+    {
       "name": "dsh-app-integration",
       "guestDirectory": "/root/dsha-app-integration",
       "entrypoint": "index.js",

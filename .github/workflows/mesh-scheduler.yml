@@ -1,0 +1,20 @@
+name: Mesh Scheduler
+on:
+  pull_request:
+    paths:
+      - "app/src/main/assets/builtin-plugins/dsh-mesh-scheduler/**"
+      - "tests/mesh-scheduler.test.cjs"
+      - ".github/workflows/mesh-scheduler.yml"
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run mesh scheduler tests
+        run: node --test tests/mesh-scheduler.test.cjs
