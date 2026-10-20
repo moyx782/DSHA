@@ -1,0 +1,19 @@
+{
+  "name": "dsh-mesh-scheduler",
+  "version": "0.1.0",
+  "description": "Resource-aware mesh task planning through MCP",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-mcp-client": "0.2.0-rc.2"
+  }
+}
