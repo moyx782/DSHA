@@ -278,6 +278,31 @@
       "executable": false
     },
     {
+      "asset": "builtin-plugins/dsh-mesh-scheduler/package.json",
+      "target": "root/dsha-mesh-scheduler/package.json",
+      "executable": false
+    },
+    {
+      "asset": "builtin-plugins/dsh-mesh-scheduler/cordis.patch.yml",
+      "target": "root/dsha-mesh-scheduler/cordis.patch.yml",
+      "executable": false
+    },
+    {
+      "asset": "builtin-plugins/dsh-mesh-scheduler/lib/index.js",
+      "target": "root/dsha-mesh-scheduler/lib/index.js",
+      "executable": false
+    },
+    {
+      "asset": "builtin-plugins/dsh-mesh-scheduler/lib/server.cjs",
+      "target": "root/dsha-mesh-scheduler/lib/server.cjs",
+      "executable": false
+    },
+    {
+      "asset": "builtin-plugins/dsh-mesh-scheduler/lib/scheduler.cjs",
+      "target": "root/dsha-mesh-scheduler/lib/scheduler.cjs",
+      "executable": false
+    },
+    {
       "asset": "dsha-plugin.sh",
       "target": "root/dsh-bin/dsha-plugin",
       "executable": true
