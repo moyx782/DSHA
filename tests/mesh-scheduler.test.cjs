@@ -67,3 +67,26 @@ test('Node enumeration drops unknown config fields and notes lack of attestation
   assert.equal(n.verification,'configured-not-attested');
   assert.equal(n.heartbeatFresh,true);
 });
+
+const {perform,readInventory} = require('../app/src/main/assets/builtin-plugins/dsh-mesh-scheduler/lib/server.cjs');
+test('MCP AI planning tool routes without executing', async () => {
+  const loadInventory=async()=>[mac,pc,phone];
+  const result=await perform('mesh_plan_task',{kind:'gpu',requiresCuda:true,minVramMb:8192},
+    {loadInventory,now:NOW});
+  assert.equal(result.ok,true);
+  assert.equal(result.nodeId,'pc');
+  assert.equal(result.executionStarted,false);
+  const listing=await perform('mesh_list_nodes',{}, {loadInventory,now:NOW});
+  assert.equal(listing.nodes.length,3);
+  assert.equal(listing.inventoryVerified,false);
+});
+test('MCP inventory fails closed when it is not configured', async () => {
+  const unavailable=Object.assign(new Error('missing'),{code:'ENOENT'});
+  const inventory={fs:{readFile:async()=>{throw unavailable;}},filename:'/does-not-exist'};
+  await assert.rejects(readInventory(inventory),/MESH_NOT_CONFIGURED/);
+  const result=await perform('mesh_plan_task',{kind:'cpu'},{
+    loadInventory:async()=>readInventory(inventory),now:NOW
+  });
+  assert.equal(result.ok,false);
+  assert.equal(result.status,'MESH_NOT_CONFIGURED');
+});
